@@ -61,8 +61,8 @@
     
     - debug: var=actual_path
 
-    - name: unarchive the client bundle
-      unarchive:
-        src: /tmp/bundle.zip
-        dest: {{ actual_path }}
+   # - name: unarchive the client bundle
+    #  unarchive:
+     #   src: /tmp/bundle.zip
+      #  dest: {{ actual_path }}
   
