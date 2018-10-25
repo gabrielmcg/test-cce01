@@ -57,7 +57,7 @@
       
     - debug: var=file_details
     
-    - set_fact: actual_path = file_details.path
+    - set_fact: actual_path = {{ file_details.path }}
     
     - debug: var=actual_path
 
