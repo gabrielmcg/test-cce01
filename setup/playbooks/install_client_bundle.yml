@@ -35,4 +35,14 @@
     set_fact:
       auth_token:  "{{ login.json.auth_token }}"
 
-  - include_tasks: includes/config_client.yml    
+  - include_tasks: includes/config_client.yml   
+  
+  
+  - name: Test client
+      shell: |
+        . env.sh
+        docker ps
+      args:
+        chdir: ~/certs.{{ ucp_username }}
+        executable: /usr/bin/bash
+  
