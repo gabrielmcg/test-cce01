@@ -46,10 +46,16 @@
         dest: /tmp/bundle.zip
       register: resp
 
-    - name: Create UCP Bundle dir
-      file:
-        path: ~/certs.{{ ucp_username }}
-        state: directory
+    #- name: Create UCP Bundle dir
+     # file:
+      #  path: ~/certs.{{ ucp_username }}
+       # state: directory
+
+    - name: Creates directory
+      file: path=~/certs.{{ ucp_username }} state=directory
+      register: file_details
+      
+    - debug: file_details
 
     - name: unarchive the client bundle
       unarchive:
