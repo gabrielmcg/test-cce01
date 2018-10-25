@@ -55,7 +55,7 @@
       file: path=~/certs.{{ ucp_username }} state=directory
       register: file_details
       
-    - debug: file_details
+    - debug: var=file_details
 
     - name: unarchive the client bundle
       unarchive:
