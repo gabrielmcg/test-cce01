@@ -56,9 +56,11 @@
       register: file_details
       
     - debug: var=file_details
+    
+    - set_fact: actual_path = file_details.path
 
     - name: unarchive the client bundle
       unarchive:
         src: /tmp/bundle.zip
-        dest: ~/certs.{{ ucp_username }}
+        dest: {{ actual_path }}
         force: yes
