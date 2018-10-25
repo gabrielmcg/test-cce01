@@ -38,8 +38,11 @@
   - name: Creates directory
     file: path=~/certs.{{ ucp_username }} state=directory
 
-
-  - include_tasks: includes/config_client.yml   
+  - block:
+    - include_tasks: includes/config_client.yml
+    become: true
+    
+  #- include_tasks: includes/config_client.yml   
   
   
   - name: Test client
