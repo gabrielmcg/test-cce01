@@ -35,6 +35,10 @@
     set_fact:
       auth_token:  "{{ login.json.auth_token }}"
 
+  - name: Creates directory
+    file: path=~/certs.{{ ucp_username }} state=directory
+
+
   - include_tasks: includes/config_client.yml   
   
   
