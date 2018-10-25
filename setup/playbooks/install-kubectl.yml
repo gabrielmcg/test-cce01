@@ -2,7 +2,7 @@
 - name: Install kubectl
   hosts: localhost
   
-  tasks
+  tasks:
   
     - name: Download kubernetes-client archive
       get_url:
