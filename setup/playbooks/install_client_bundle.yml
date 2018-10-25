@@ -48,7 +48,7 @@
   - name: Test client
     shell: |
       . env.sh
-      docker ps
+      kubectl version
     args:
       chdir: ~/certs.{{ ucp_username }}
       executable: /usr/bin/bash
