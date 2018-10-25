@@ -39,10 +39,10 @@
   
   
   - name: Test client
-      shell: |
-        . env.sh
-        docker ps
-      args:
-        chdir: ~/certs.{{ ucp_username }}
-        executable: /usr/bin/bash
+    shell: |
+      . env.sh
+      docker ps
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash
   
