@@ -46,7 +46,7 @@
   when: checks.status !=200 and checks.status != 500 
   with_items: "{{ groups.ucp }}"
 #  with_items: "{{ ping_servers }}"
-  no_log: yes
+#  no_log: yes
 
 - debug: var=checks.results
 
