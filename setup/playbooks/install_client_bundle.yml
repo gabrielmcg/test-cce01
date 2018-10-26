@@ -1,5 +1,5 @@
 ---
-- hosts: local
+- hosts: test_machine
   gather_facts: false
   become_user: root
   become: true
