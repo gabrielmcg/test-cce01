@@ -1,6 +1,16 @@
 ---
 - name: Install kubectl
   hosts: localhost
+  vars:
+    kubectl_tmp_directory: "{{lookup('env', 'TMPDIR') | default('/tmp',true)}}"
+    kubectl_version: "1.10.4"
+    kubectl_os: "linux"
+    kubectl_arch: "amd64"
+    kubectl_bin_directory: "/usr/local/bin"
+    kubectl_checksum: "sha256:2831fe621bf1542a1eac38b8f50aa40a96b26153e850b3ff7155e5ce4f4f400e"
+    kubectl_owner: "root"
+    kubectl_group: "root"
+  
   
   tasks:
   
