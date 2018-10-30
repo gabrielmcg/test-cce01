@@ -57,6 +57,23 @@
   - debug: var=test_vms    
   
   
+  
+  #https://{{vc}}/rest/vcenter/vm      
+  - name: Retrieve list of vms
+    uri:
+      url: "https://{{ vcenter_hostname }}/rest/vcenter/vm/{{ item.vm }}"
+      headers:
+        vmware-api-session-id: "{{ auth_token }}"
+        Content-Type: application/json
+      method: GET
+      status_code: 200
+      body_format: json
+      validate_certs: no
+    with_items: "{{ test_vms }}"
+    register: vm_details
+    
+  - debug: var=vm_details
+
       
   
 
