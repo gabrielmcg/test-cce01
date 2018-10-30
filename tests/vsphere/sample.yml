@@ -54,7 +54,7 @@
     vars:
       query: "[?name == 'hpe-rhel-test' ].{id: id, name: name }"
         
-  - debug: var=rest_all_vms    
+  - debug: var=test_vms    
   
   
       
