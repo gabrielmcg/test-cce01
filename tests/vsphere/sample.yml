@@ -31,6 +31,6 @@
 
   - name: Remember the token
     set_fact:
-      auth_token:  "{{ login.json.auth_token }}"
+      auth_token:  "{{ login.json.value }}"
   
 
