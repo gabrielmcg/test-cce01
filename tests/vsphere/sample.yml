@@ -1,0 +1,34 @@
+---
+- hosts: test_machine
+  gather_facts: false
+  become_user: root
+  become: true
+  
+  tasks:
+
+
+#https://{{vc}}/rest/com/vmware/cis/session
+
+  - name: Retrieve a token for vSphere
+    uri:
+      url: "https://{{ vcenter_hostname }}/rest/com/vmware/cis/session"
+      headers:
+        Content-Type: application/json
+      method: POST
+      status_code: 200
+      body_format: json
+      validate_certs: no
+      body: '{"username":"{{ vcenter_username }}","password":"{{ vcenter_password }}"}'
+      use_proxy: no
+    register: login
+    until: login.status == 200
+    retries: 20
+    delay: 5
+    
+  - debug: var=login  
+
+  - name: Remember the token
+    set_fact:
+      auth_token:  "{{ login.json.auth_token }}"
+  
+
