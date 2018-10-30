@@ -17,7 +17,7 @@
       executable: /usr/bin/bash
       
       
-  - name:Apply the Redis master deployment  
+  - name: Apply the Redis master deployment  
     shell: kubectl apply -f redis-master-deployment.yaml
     register: redis-master-deployment
     
