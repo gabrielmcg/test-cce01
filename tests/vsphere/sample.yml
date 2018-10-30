@@ -52,7 +52,7 @@
   - set_fact: 
       test_vms: "{{ rest_all_vms | json_query(query) }}"
     vars:
-      query: "json.value[?starts-with(name,'hpe-')].{id: id, name: name }"
+      query: "json.value[?starts_with(name,'hpe-')].{id: id, name: name }"
         
   - debug: var=test_vms    
   
