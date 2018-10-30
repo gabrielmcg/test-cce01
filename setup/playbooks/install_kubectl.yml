@@ -14,7 +14,8 @@
     kubectl_owner: "root"
     kubectl_group: "root"
   
-  
+  environment: "{{ env }}"
+    
   tasks:
   
     - name: Download kubernetes-client archive
