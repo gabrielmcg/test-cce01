@@ -32,5 +32,23 @@
   - name: Remember the token
     set_fact:
       auth_token:  "{{ login.json.value }}"
+      
+      
+#https://{{vc}}/rest/vcenter/vm      
+  - name: Retrieve list of vms
+    uri:
+      url: "https://{{ vcenter_hostname }}/rest/vcenter/vm"
+      headers:
+        vmware-api-session-id: "{{ auth_token }}"
+        Content-Type: application/json
+      method: GET
+      status_code: 200
+      body_format: json
+      validate_certs: no
+    register: rest_all_vms
+    
+  - debug: var=rest_all_vms
+      
+      
   
 
