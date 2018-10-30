@@ -22,7 +22,12 @@
       dest: /tmp/redis-master-deployment.yaml
       
   - name: Apply the Redis master deployment  
-    shell: kubectl apply -f /tmp/redis-master-deployment.yaml
+    shell: |
+      . env.sh
+      kubectl apply -f /tmp/redis-master-deployment.yaml
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
     register: redis-master-deployment
     
   - debug: var=redis-master-deployment  
