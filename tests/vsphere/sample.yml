@@ -50,9 +50,9 @@
   - debug: var=rest_all_vms
       
   - set_fact: 
-    test_vms: "{{ rest_all_vms | json_query(query) }}"
+      test_vms: "{{ rest_all_vms | json_query(query) }}"
     vars:
-     query: "[?name == 'hpe-rhel-test' ].{id: id, name: name }"
+      query: "[?name == 'hpe-rhel-test' ].{id: id, name: name }"
         
   - debug: var=rest_all_vms    
   
