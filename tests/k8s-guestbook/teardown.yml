@@ -1,0 +1,19 @@
+---
+- hosts: test_machine
+  gather_facts: false
+  become_user: root
+  become: true
+  
+  tasks:
+
+      
+  - name: Delete artifacts  
+    shell: |
+      . env.sh
+      kubectl delete deployment redis-master
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
+    register: redis-master-deployment
+    
+  
