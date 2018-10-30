@@ -1,0 +1,14 @@
+[local]
+127.0.0.1
+
+[local:vars]
+ansible_connection=local
+
+
+[ansiblebox]
+hpe-ansible
+
+[test_machine:children]
+ansiblebox
+#local
+
