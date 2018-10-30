@@ -18,7 +18,9 @@
       status_code: 200
       body_format: json
       validate_certs: no
-      body: '{"username":"{{ vcenter_username }}","password":"{{ vcenter_password }}"}'
+      user: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      force_basic_auth: yes      
       use_proxy: no
     register: login
     until: login.status == 200
