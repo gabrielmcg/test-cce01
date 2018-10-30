@@ -1,0 +1,27 @@
+---
+- hosts: test_machine
+  gather_facts: false
+  become_user: root
+  become: true
+  
+  tasks:
+
+
+
+  - name: Test client
+    shell: |
+      . env.sh
+      kubectl version
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash
+      
+      
+  - name:Apply the Redis master deployment  
+    shell: kubectl apply -f redis-master-deployment.yaml
+    register: redis-master-deployment
+    
+  - debug: var=redis-master-deployment  
+    
+      
+      
