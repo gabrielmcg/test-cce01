@@ -11,9 +11,14 @@
     shell: |
       . env.sh
       kubectl delete deployment redis-master
+      kubectl delete deployment redis-slave
+      kubectl delete deployment frontend
+      kubectl delete service redis-master
+      kubectl delete service redis-slave
+      kubectl delete service frontend
     args:
       chdir: ~/certs.{{ ucp_username }}
       executable: /usr/bin/bash      
-    register: redis-master-deployment
+    register: redis-teardown
     
   
