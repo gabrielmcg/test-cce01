@@ -16,9 +16,13 @@
       chdir: ~/certs.{{ ucp_username }}
       executable: /usr/bin/bash
       
+  - name: Copy  redis-master-deployment yml
+    copy:
+      src: ./redis-master-deployment.yaml
+      dest: /tmp/redis-master-deployment.yaml
       
   - name: Apply the Redis master deployment  
-    shell: kubectl apply -f redis-master-deployment.yaml
+    shell: kubectl apply -f /tmp/redis-master-deployment.yaml
     register: redis-master-deployment
     
   - debug: var=redis-master-deployment  
