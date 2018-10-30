@@ -6,15 +6,6 @@
   
   tasks:
 
-
-
-  - name: Test client
-    shell: |
-      . env.sh
-      kubectl version
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash
       
   - name: Copy  redis-master-deployment yml
     copy:
