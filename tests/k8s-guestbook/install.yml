@@ -15,7 +15,7 @@
   - name: Apply the Redis master deployment  
     shell: |
       . env.sh
-      kubectl apply -f /tmp/redis-master-deployment.yaml
+      kubectl apply -f /tmp/redis-master-deployment.yaml -o json
     args:
       chdir: ~/certs.{{ ucp_username }}
       executable: /usr/bin/bash      
@@ -23,5 +23,91 @@
     
   - debug: var=redis-master-deployment  
     
+      #kubectl get deployment 
+      #kubectl get pods      
       
+
+  - name: Copy  redis-master-service.yaml
+    copy:
+      src: ./redis-master-service.yaml
+      dest: /tmp/redis-master-service.yaml
+      
+  - name: Apply the Redis master service  
+    shell: |
+      . env.sh
+      kubectl apply -f /tmp/redis-master-service.yaml -o json
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
+    register: redis-master-service
+    
+#  kubectl get service
+
+  - name: Copy  redis-slave-deployment.yaml
+    copy:
+      src: ./redis-slave-deployment.yaml
+      dest: /tmp/redis-slave-deployment.yaml
+      
+  - name: Apply the Redis slave deployment  
+    shell: |
+      . env.sh
+      kubectl apply -f /tmp/redis-slave-deployment.yaml -o json
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
+    register: redis-slave-deployment
+
+# kubectl get pods
+
+  - name: Copy redis-slave-service.yaml
+    copy:
+      src: ./redis-slave-service.yaml
+      dest: /tmp/redis-slave-service.yaml
+      
+  - name: Apply the Redis slave service  
+    shell: |
+      . env.sh
+      kubectl apply -f /tmp/redis-slave-service.yaml -o json
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
+    register: redis-slave-service
+    
+    
+# kubectl get services
+
+
+
+
+  - name: Copy frontend-deployment.yaml
+    copy:
+      src: ./frontend-deployment.yaml
+      dest: /tmp/frontend-deployment.yaml
+      
+  - name: Apply the  frontend deployment  
+    shell: |
+      . env.sh
+      kubectl apply -f /tmp/frontend-deployment.yaml -o json
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
+    register: frontend-deployment
+    
+# kubectl get pods -l app=guestbook -l tier=frontend
+
+
+  - name: Copy frontend-service.yaml
+    copy:
+      src: ./frontend-service.yaml
+      dest: /tmp/frontend-service.yaml
+      
+  - name: Apply the  frontend service  
+    shell: |
+      . env.sh
+      kubectl apply -f /tmp/frontend-service.yaml -o json
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
+    register: frontend-service
+        
       
