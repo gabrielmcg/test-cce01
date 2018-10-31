@@ -20,7 +20,7 @@
     - debug: var=frontend_svc
       
     - set_fact: 
-        frontend_port: "{{ frontend_svc | json_query(query) | join(,) }}"
+        frontend_port: "{{ frontend_svc | json_query(query) | join(',') }}"
       vars:
         query: "spec.ports[*].nodePort"    
         
