@@ -13,7 +13,7 @@
         kubectl  --kubeconfig ~/certs.{{ ucp_username }}/kube.yml  get svc frontend -o json
       register: frontend_svc
       
-    - debug: var=frontend_svc
+    - debug: var=frontend_svc.stdout
       
     - set_fact: 
         frontend_port: "{{ frontend_svc.stdout | from_json | json_query(query) }}"
