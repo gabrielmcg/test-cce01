@@ -23,12 +23,12 @@
   - name: Install yarn
     shell: |          
       curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-      yum install yarn
+      yum install -y yarn
     register: yarn_output
     
   - name: Install libXScrnSaver
     shell:      
-      yum install libXScrnSaver
+      yum install -y libXScrnSaver
     register: libXScrnSaver_output
     
   - debug: var=node_output
