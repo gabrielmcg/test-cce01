@@ -25,10 +25,17 @@
         query: "spec.ports[*].nodePort"    
         
     - debug: var=frontend_port   
+    
+    - name: copy html file
+      copy:   
+        src: ./puppeteer-test
+        dest: /tmp/
+        directory_mode: yes
+    
       
     - name: Run test passing in PORT and MESSAGE
       shell:
-        node ./puppeteer-test/puppeteer-test.js
+        node /tmp/puppeteer-test/puppeteer-test.js
       environment:
         PORT: " {{ frontend_port }} "
         MESSAGE: "test message from ansible"
