@@ -2,9 +2,10 @@
   "name": "puppeteer-test",
   "version": "1.0.0",
   "description": "",
-  "main": "puppeteer-test.js",
+  "main": "puppeteer_example.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "puppeteer_example.js"
   },
   "author": "",
   "license": "ISC",
