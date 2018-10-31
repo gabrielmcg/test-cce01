@@ -1,0 +1,21 @@
+---
+- hosts: test_machine
+  gather_facts: false
+  become_user: root
+  become: true
+  
+  tasks:
+  
+  - name: Install node stuff
+    shell: |  
+      yum install -y gcc-c++ make
+      curl -sL https://rpm.nodesource.com/setup_8.x | sudo -E bash -
+      yum install -y nodejs
+      curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+      yum install yarn
+      yum install libXScrnSaver
+    register: node_output
+    
+  - debug: var=node_output
+  
+   
