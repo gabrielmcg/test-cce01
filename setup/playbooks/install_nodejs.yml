@@ -9,15 +9,27 @@
 
   tasks:
   
-  - name: Install node stuff
-    shell: |  
+  - name: Install prereqs
+    shell:
       yum install -y gcc-c++ make
+    register: prereqs_output
+      
+  - name: Install nodejs
+    shell: |        
       curl -sL https://rpm.nodesource.com/setup_8.x | sudo -E bash -
       yum install -y nodejs
+    register: nodejs_output
+    
+  - name: Install yarn
+    shell: |          
       curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
       yum install yarn
+    register: yarn_output
+    
+  - name: Install libXScrnSaver
+    shell:      
       yum install libXScrnSaver
-    register: node_output
+    register: libXScrnSaver_output
     
   - debug: var=node_output
   
