@@ -13,6 +13,8 @@
         kubectl  --kubeconfig ~/certs.{{ ucp_username }}/kube.yml  get svc frontend
       register: frontend_svc
       
+    - debug: var=frontend_svc
+      
     - set_fact: 
         frontend_port: "{{ frontend_svc | json_query(query) }}"
       vars:
@@ -22,7 +24,7 @@
       
     - name: Run test passing in PORT and MESSAGE
       shell:
-        node puppeteer-test/puppeteer-test.js
+        node ./puppeteer-test/puppeteer-test.js
       environment:
         PORT: " {{ frontend_port }} "
         MESSAGE: "test message from ansible"
