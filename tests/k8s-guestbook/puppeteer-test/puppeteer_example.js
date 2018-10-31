@@ -1,20 +1,21 @@
 const puppeteer = require('puppeteer');
 
 const PORT = process.env.PORT || 80;
+const MESSAGE = process.env.MESSAGE || 'test message';
 
 (async () => {
   const browser = await puppeteer.launch({headless: true, args:['--no-sandbox']});
   const page = await browser.newPage();
   await page.goto('http://10.10.174.231:' + PORT);
 
-await page.type('body > div > form > fieldset > input', 'message1');
+await page.type('body > div > form > fieldset > input', MESSAGE );
 await page.click('body > div > form > fieldset > button');
 
 //await page.waitForNavigation({waitUntil: 'networkidle2'});
 
 console.log("back from refresh");
 
-//await page.screenshot({path: 'full.png', fullPage: true});
+
 
 //await page.goto('http://10.10.174.231:32798');
 
