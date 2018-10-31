@@ -38,7 +38,7 @@
         npm install
         npm start
       environment:
-        PORT: " {{ frontend_port }} "
+        PORT: "{{ frontend_port }}"
         MESSAGE: "test message from ansible"
       args:
         chdir: /tmp/puppeteer-test
