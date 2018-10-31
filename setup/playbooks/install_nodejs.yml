@@ -4,6 +4,9 @@
   become_user: root
   become: true
   
+  
+  environment: "{{ env }}"
+
   tasks:
   
   - name: Install node stuff
