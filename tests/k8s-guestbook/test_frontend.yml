@@ -16,7 +16,7 @@
     - debug: var=frontend_svc
       
     - set_fact: 
-        frontend_port: "{{ frontend_svc | json_query(query) }}"
+        frontend_port: "{{ frontend_svc.stdout | from_json | json_query(query) }}"
       vars:
         query: "spec.port[*].nodePort"    
         
