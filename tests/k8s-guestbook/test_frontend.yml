@@ -35,7 +35,7 @@
       
     - name: Run test passing in PORT and MESSAGE
       shell:
-        node /tmp/puppeteer-test/puppeteer-test.js
+        node /tmp/puppeteer-test/puppeteer-example.js
       environment:
         PORT: " {{ frontend_port }} "
         MESSAGE: "test message from ansible"
