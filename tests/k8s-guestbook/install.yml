@@ -53,19 +53,12 @@
       dest: /tmp/redis-slave-service.yaml
       
   - name: Apply the Redis slave service  
-    shell: |
-      . env.sh
-      kubectl apply -f /tmp/redis-slave-service.yaml -o json
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash      
+    shell:
+      kubectl --kubeconfig ~/certs.{{ ucp_username }}/kube.yml apply -f /tmp/redis-slave-service.yaml -o json  
     register: redis_slave_service
     
     
 # kubectl get services
-
-
-
 
   - name: Copy frontend-deployment.yaml
     copy:
