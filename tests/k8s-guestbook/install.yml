@@ -6,6 +6,14 @@
   
   tasks:
 
+  - name: Configure Kubectl   
+    shell: 
+      . env.sh
+    args:
+      chdir: ~/certs.{{ ucp_username }}
+      executable: /usr/bin/bash      
+    register: kubectl_config
+    
       
   - name: Copy  redis-master-deployment yml
     copy:
@@ -13,13 +21,9 @@
       dest: /tmp/redis-master-deployment.yaml
       
   - name: Apply the Redis master deployment  
-    shell: |
-      . env.sh
+    shell: 
       kubectl apply -f /tmp/redis-master-deployment.yaml -o json
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash      
-    register: redis-master-deployment
+    register: redis_master_deployment
     
   - debug: var=redis-master-deployment  
     
@@ -33,13 +37,9 @@
       dest: /tmp/redis-master-service.yaml
       
   - name: Apply the Redis master service  
-    shell: |
-      . env.sh
+    shell: 
       kubectl apply -f /tmp/redis-master-service.yaml -o json
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash      
-    register: redis-master-service
+    register: redis_master_service
     
 #  kubectl get service
 
@@ -49,13 +49,9 @@
       dest: /tmp/redis-slave-deployment.yaml
       
   - name: Apply the Redis slave deployment  
-    shell: |
-      . env.sh
-      kubectl apply -f /tmp/redis-slave-deployment.yaml -o json
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash      
-    register: redis-slave-deployment
+    shell:
+      kubectl apply -f /tmp/redis-slave-deployment.yaml -o json  
+    register: redis_slave_deployment
 
 # kubectl get pods
 
@@ -65,13 +61,9 @@
       dest: /tmp/redis-slave-service.yaml
       
   - name: Apply the Redis slave service  
-    shell: |
-      . env.sh
-      kubectl apply -f /tmp/redis-slave-service.yaml -o json
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash      
-    register: redis-slave-service
+    shell: 
+      kubectl apply -f /tmp/redis-slave-service.yaml -o json   
+    register: redis_slave_service
     
     
 # kubectl get services
@@ -85,13 +77,9 @@
       dest: /tmp/frontend-deployment.yaml
       
   - name: Apply the  frontend deployment  
-    shell: |
-      . env.sh
-      kubectl apply -f /tmp/frontend-deployment.yaml -o json
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash      
-    register: frontend-deployment
+    shell:
+      kubectl apply -f /tmp/frontend-deployment.yaml -o json    
+    register: frontend_deployment
     
 # kubectl get pods -l app=guestbook -l tier=frontend
 
@@ -102,12 +90,8 @@
       dest: /tmp/frontend-service.yaml
       
   - name: Apply the  frontend service  
-    shell: |
-      . env.sh
-      kubectl apply -f /tmp/frontend-service.yaml -o json
-    args:
-      chdir: ~/certs.{{ ucp_username }}
-      executable: /usr/bin/bash      
-    register: frontend-service
+    shell:
+      kubectl apply -f /tmp/frontend-service.yaml -o json    
+    register: frontend_service
         
       
