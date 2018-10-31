@@ -10,7 +10,7 @@
   
     - name: Find frontend
       shell:
-        kubectl  --kubeconfig ~/certs.{{ ucp_username }}/kube.yml  get svc frontend
+        kubectl  --kubeconfig ~/certs.{{ ucp_username }}/kube.yml  get svc frontend -o json
       register: frontend_svc
       
     - debug: var=frontend_svc
