@@ -59,7 +59,7 @@
   
   
   #https://{{vc}}/rest/vcenter/vm      
-  - name: Retrieve list of vms
+  - name: Retrieve vm details
     uri:
       url: "https://{{ vcenter_hostname }}/rest/vcenter/vm/{{ item.vm }}"
       headers:
